@@ -1,0 +1,16 @@
+{
+  "name": "movies_api",
+  "version": "1.0.0",
+  "description": "Movie DB API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcelo Bettini",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
