@@ -1,15 +1,14 @@
-import movies from "../model/fileSystem/data.json" assert { type: "json" };
 import { Movie } from "../model/mongoDB/movie.js";
-import mongoose from "mongoose";
-const { ObjectId } = mongoose.Types;
 
 export const movieController = {
   async getAll(req, res) {
     const movieCollection = await Movie.find();
     movieCollection
-      ? res
-          .status(200)
-          .json({ success: true, message: "List of movies", data: movies })
+      ? res.status(200).json({
+          success: true,
+          message: "List of movies",
+          data: movieCollection, //acá estábamos pasando movies, que venía del json y por eso se enojaba (con justa razón) Mongoose.
+        })
       : res
           .status(404)
           .json({ success: false, message: "Movies database empty" });
@@ -40,9 +39,8 @@ export const movieController = {
     }
   },
   async deleteOne(req, res) {
-    const idPosta = new ObjectId(req.params.id);
     try {
-      await Movie.findByIdAndDelete(idPosta);
+      await Movie.findById;
       res.status(200).json({ success: true, message: "Movie deleted" });
     } catch (err) {
       res.status(308).json({ success: false, message: err.message });
