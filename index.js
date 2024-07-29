@@ -7,6 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 import { router as moviesRouter } from "./router/movies.js";
+import { router as usersRouter } from "./router/users.js";
 
 const PORT = process.env.PORT ?? 3000;
 app.listen(PORT, (err) => {
@@ -19,3 +20,4 @@ app.listen(PORT, (err) => {
 });
 
 app.use("/api/movies", moviesRouter);
+app.use("/api/users", usersRouter);
